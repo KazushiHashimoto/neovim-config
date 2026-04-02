@@ -26,7 +26,12 @@ BRIGHT_WHITE="#ffffff"
 apply_gnome_terminal() {
     if ! command -v dconf &>/dev/null; then
         echo "dconf not found, skipping GNOME Terminal." >&2
-        return 1
+        return 0
+    fi
+
+    if ! dconf list /org/gnome/terminal/legacy/ &>/dev/null; then
+        echo "GNOME Terminal dconf path not found, skipping GNOME Terminal." >&2
+        return 0
     fi
 
     local profile
@@ -35,8 +40,8 @@ apply_gnome_terminal() {
         profile="$(dconf list /org/gnome/terminal/legacy/profiles:/ | head -1 | tr -d '/:')"
     fi
     if [[ -z "$profile" ]]; then
-        echo "No GNOME Terminal profile found." >&2
-        return 1
+        echo "No GNOME Terminal profile found, skipping GNOME Terminal." >&2
+        return 0
     fi
 
     local path="/org/gnome/terminal/legacy/profiles:/:${profile}/"
