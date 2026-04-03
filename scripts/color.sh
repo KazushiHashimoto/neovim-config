@@ -35,9 +35,23 @@ apply_gnome_terminal() {
     fi
 
     local profile
-    profile="$(dconf read /org/gnome/terminal/legacy/profiles:/default | tr -d "'")"
+    if command -v gsettings &>/dev/null; then
+        profile="$(gsettings get org.gnome.Terminal.ProfilesList default 2>/dev/null | tr -d "'")"
+    else
+        profile=""
+    fi
     if [[ -z "$profile" ]]; then
-        profile="$(dconf list /org/gnome/terminal/legacy/profiles:/ | head -1 | tr -d '/:')"
+        profile="$(dconf read /org/gnome/terminal/legacy/profiles:/default 2>/dev/null | tr -d "'")"
+    fi
+    if [[ -z "$profile" ]] && command -v gsettings &>/dev/null; then
+        profile="$(
+            gsettings get org.gnome.Terminal.ProfilesList list 2>/dev/null \
+                | tr -d "[]'," \
+                | awk 'NF { print $1; exit }'
+        )"
+    fi
+    if [[ -z "$profile" ]]; then
+        profile="$(dconf list /org/gnome/terminal/legacy/profiles:/ 2>/dev/null | head -1 | tr -d '/:')"
     fi
     if [[ -z "$profile" ]]; then
         echo "No GNOME Terminal profile found, skipping GNOME Terminal." >&2

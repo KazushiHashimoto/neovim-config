@@ -138,13 +138,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-conda deactivate
-
 export PATH=$HOME/.robotech/bin:$PATH
 export CPPYGEN_LIBCLANG_PATH=/usr/lib/llvm-17/lib/libclang.so
-
-. "$HOME/.local/bin/env"
-
 
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HOME}/.robotech/mujoco/lib
 
@@ -210,10 +205,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source /opt/ros/jazzy/setup.bash
-. "$HOME/.cargo/env"
-export IS_SIM=ON
-export CC=/usr/bin/clang-18
-export CXX=/usr/bin/clang++-18
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
 
