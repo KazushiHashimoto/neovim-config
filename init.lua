@@ -35,4 +35,4 @@ require("core.keymaps")
 require("core.autocmds")
 
 -- Color scheme
-vim.cmd.colorscheme("vscode")
+vim.cmd.colorscheme("tomorrow-night")

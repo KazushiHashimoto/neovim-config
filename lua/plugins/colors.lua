@@ -24,6 +24,10 @@ return {
     lazy = true,
   },
   {
+    "paul-han-gh/tomorrow.nvim",
+    lazy = false,
+  },
+  {
     "Mofiqul/vscode.nvim",
     lazy = false,
     config = function()

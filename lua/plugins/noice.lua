@@ -34,6 +34,10 @@ return {
       },
     })
 
+    require("notify").setup({
+      timeout = 750,
+    })
+
     vim.notify = function(...)
       require("notify")(...)
     end

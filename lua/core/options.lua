@@ -17,5 +17,8 @@ vim.opt.splitright = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
 
+-- Hide the ~ marker on empty lines past end-of-buffer
+vim.opt.fillchars:append({ eob = " " })
+
 vim.cmd("syntax on")
 

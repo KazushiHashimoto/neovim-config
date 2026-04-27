@@ -31,7 +31,7 @@ return {
         ["<Down>"] = cmp.mapping.select_next_item(),
         ["<Up>"] = cmp.mapping.select_prev_item(),
 ["<Esc>"] = cmp.mapping.abort(),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-p>"] = cmp.mapping.complete(),
       }),
 
       sources = {
