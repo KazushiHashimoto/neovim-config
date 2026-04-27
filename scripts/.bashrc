@@ -138,12 +138,19 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+conda deactivate
+
 export PATH=$HOME/.robotech/bin:$PATH
 export CPPYGEN_LIBCLANG_PATH=/usr/lib/llvm-17/lib/libclang.so
+
+. "$HOME/.local/bin/env"
+
 
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HOME}/.robotech/mujoco/lib
 
 export PATH=${PATH}:${HOME}/.robotech/mujoco/bin
+
+export PATH=${PATH}:${HOME}/go/bin
 
 # Auto-activate local .venv when entering a directory
 
@@ -198,6 +205,15 @@ function cd() {
     auto_venv_activate
 }
 
+function ncd() {
+  local path=""
+  for ((i=1; i<=$1; i++)); do
+    path="../$path"
+  done
+  echo "Moving to $path" >&2
+  cd "$path" || return
+}
+
 # Run once for initial directory
 auto_venv_activate
 export NVM_DIR="$HOME/.nvm"
@@ -205,6 +221,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source /opt/ros/jazzy/setup.bash
+. "$HOME/.cargo/env"
+export IS_SIM=ON
+export CC=/usr/bin/clang-18
+export CXX=/usr/bin/clang++-18
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
 
@@ -214,3 +234,9 @@ alias at2="tmux attach -t 2"
 
 alias c=clear 
 alias nv="nvim ."
+
+alias main="sudo ./build/main"
+alias build="cmake --build build -j"
+alias sim="./build/sim_mujoco"
+
+alias reload="source ~/.bashrc"
