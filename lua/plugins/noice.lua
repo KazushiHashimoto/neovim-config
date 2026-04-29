@@ -34,8 +34,12 @@ return {
       },
     })
 
+    local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+    local notify_background = normal.bg and string.format("#%06x", normal.bg) or "#000000"
+
     require("notify").setup({
       timeout = 750,
+      background_colour = notify_background,
     })
 
     vim.notify = function(...)
