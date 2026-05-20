@@ -123,23 +123,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/kazushi-hashimoto/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/kazushi-hashimoto/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/kazushi-hashimoto/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/kazushi-hashimoto/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-conda deactivate
-
 export PATH=$HOME/.robotech/bin:$PATH
 export CPPYGEN_LIBCLANG_PATH=/usr/lib/llvm-17/lib/libclang.so
 
@@ -221,7 +204,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source /opt/ros/jazzy/setup.bash
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 export IS_SIM=ON
 export CC=/usr/bin/clang-18
 export CXX=/usr/bin/clang++-18
@@ -240,3 +223,5 @@ alias build="cmake --build build -j"
 alias sim="./build/sim_mujoco"
 
 alias reload="source ~/.bashrc"
+
+eval "$(starship init bash)" 

@@ -3,10 +3,10 @@ local config = wezterm.config_builder()
 
 -- Font (matches GNOME Terminal "Tomorrow Night" profile)
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 14.5
+config.font_size = 13.0
 
 -- Default shell: zsh inside tmux (attach to session 0, create if missing)
-config.default_prog = { "/usr/bin/zsh", "-l", "-c", "tmux new-session -A -s 0" }
+config.default_prog = { "/usr/bin/bash", "-l", "-c", "tmux new-session -A -s 0" }
 -- If you'd rather just launch zsh and run tmux manually, swap to:
 -- config.default_prog = { "/usr/bin/zsh", "-l" }
 
