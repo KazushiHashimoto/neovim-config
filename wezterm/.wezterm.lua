@@ -84,4 +84,26 @@ config.background = {
 -- Tell apps we support truecolor + undercurl (good for nvim)
 config.term = "wezterm"
 
+-- Startup window: maximize to fill the screen.
+-- A maximized window covers the whole display, so it's inherently centered.
+wezterm.on("gui-startup", function(cmd)
+    local _, _, window = wezterm.mux.spawn_window(cmd or {})
+    window:gui_window():maximize()
+end)
+
+-- Alternative: open a fixed-size window centered on a 1920x1080 screen.
+-- Comment out the handler above and uncomment this block to use it.
+-- local SCREEN_W, SCREEN_H = 1920, 1080
+-- config.initial_cols = 160
+-- config.initial_rows = 42
+-- wezterm.on("gui-startup", function(cmd)
+--     local _, _, window = wezterm.mux.spawn_window(cmd or {})
+--     local gui = window:gui_window()
+--     local dims = gui:get_dimensions()
+--     gui:set_position(
+--         math.floor((SCREEN_W - dims.pixel_width) / 2),
+--         math.floor((SCREEN_H - dims.pixel_height) / 2)
+--     )
+-- end)
+
 return config
