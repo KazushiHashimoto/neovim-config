@@ -34,23 +34,23 @@ else
     echo "WezTerm already installed: $(wezterm --version)"
 fi
 
-# Copy .wezterm.lua and background image
-echo "Copying .wezterm.lua to $HOME..."
-cp "$REPO_DIR/wezterm/.wezterm.lua" "$HOME/.wezterm.lua"
-echo "Copying wezterm background image to $HOME/Pictures..."
+# Symlink .wezterm.lua and copy background image
+echo "Symlinking .wezterm.lua to $HOME..."
+ln -sfn "$REPO_DIR/wezterm/.wezterm.lua" "$HOME/.wezterm.lua"
+echo "Symlinking wezterm background image to $HOME/Pictures..."
 mkdir -p "$HOME/Pictures"
-cp "$REPO_DIR/wezterm/shinjuku.png" "$HOME/Pictures/shinjuku.png"
+ln -sfn "$REPO_DIR/wezterm/shinjuku.png" "$HOME/Pictures/shinjuku.png"
 
-# Copy .bashrc
-echo "Copying .bashrc to $HOME..."
-cp "$REPO_DIR/scripts/.bashrc" "$HOME/.bashrc"
+# Symlink .bashrc
+echo "Symlinking .bashrc to $HOME..."
+ln -sfn "$REPO_DIR/scripts/.bashrc" "$HOME/.bashrc"
 
-# Copy .zshrc
-echo "Copying .zshrc to $HOME..."
-cp "$REPO_DIR/scripts/.zshrc" "$HOME/.zshrc"
+# Symlink .zshrc
+echo "Symlinking .zshrc to $HOME..."
+ln -sfn "$REPO_DIR/scripts/.zshrc" "$HOME/.zshrc"
 
-# Copy tmux.conf
-echo "Copying .tmux.conf to $HOME..."
-cp "$REPO_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
+# Symlink .tmux.conf
+echo "Symlinking .tmux.conf to $HOME..."
+ln -sfn "$REPO_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 
 echo "Done."

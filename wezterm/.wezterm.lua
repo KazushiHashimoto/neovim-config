@@ -84,6 +84,16 @@ config.background = {
 -- Tell apps we support truecolor + undercurl (good for nvim)
 config.term = "wezterm"
 
+-- Key bindings
+config.keys = {
+    -- Shift+Enter sends a backslash followed by a carriage return
+    {
+        key = "Enter",
+        mods = "SHIFT",
+        action = wezterm.action.SendString("\\\r"),
+    },
+}
+
 -- Startup window: maximize to fill the screen.
 -- A maximized window covers the whole display, so it's inherently centered.
 wezterm.on("gui-startup", function(cmd)
