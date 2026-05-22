@@ -2,7 +2,12 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- Font (matches GNOME Terminal "Tomorrow Night" profile)
-config.font = wezterm.font("JetBrainsMono Nerd Font")
+-- JetBrainsMono renders Latin + Nerd Font icons; Noto Sans Mono CJK JP
+-- is the fallback for Japanese (and other CJK) glyphs.
+config.font = wezterm.font_with_fallback({
+    "JetBrainsMono Nerd Font",
+    "Noto Sans Mono CJK JP",
+})
 config.font_size = 13.0
 
 -- Default shell: zsh inside tmux (attach to session 0, create if missing)
