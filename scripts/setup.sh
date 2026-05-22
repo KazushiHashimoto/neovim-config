@@ -53,4 +53,9 @@ ln -sfn "$REPO_DIR/scripts/.zshrc" "$HOME/.zshrc"
 echo "Symlinking .tmux.conf to $HOME..."
 ln -sfn "$REPO_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 
+# Symlink starship.toml
+echo "Symlinking starship.toml to $HOME/.config..."
+mkdir -p "$HOME/.config"
+ln -sfn "$REPO_DIR/scripts/starship.toml" "$HOME/.config/starship.toml"
+
 echo "Done."
