@@ -34,6 +34,21 @@ else
     echo "WezTerm already installed: $(wezterm --version)"
 fi
 
+# Install the wezterm terminfo entry (needed because .wezterm.lua sets
+# config.term = "wezterm"; without it, apps inside wezterm get wrong
+# colors/keys). Installs to ~/.terminfo, no sudo required.
+if ! infocmp wezterm >/dev/null 2>&1; then
+    echo "Installing wezterm terminfo..."
+    TERMINFO_TMP="$(mktemp)"
+    curl -fsSL -o "$TERMINFO_TMP" \
+        https://raw.githubusercontent.com/wezterm/wezterm/main/termwiz/data/wezterm.terminfo
+    tic -x -o "$HOME/.terminfo" "$TERMINFO_TMP"
+    rm -f "$TERMINFO_TMP"
+    echo "wezterm terminfo installed."
+else
+    echo "wezterm terminfo already present."
+fi
+
 # Symlink .wezterm.lua and copy background image
 echo "Symlinking .wezterm.lua to $HOME..."
 ln -sfn "$REPO_DIR/wezterm/.wezterm.lua" "$HOME/.wezterm.lua"
