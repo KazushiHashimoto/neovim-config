@@ -89,6 +89,10 @@ config.background = {
 -- Tell apps we support truecolor + undercurl (good for nvim)
 config.term = "wezterm"
 
+-- Enable IME (IBus + Mozc) for Japanese input. Without this wezterm uses
+-- xkb-compose only and IBus is ignored, so henkan won't reach the terminal.
+config.use_ime = true
+
 -- Key bindings
 config.keys = {
     -- Shift+Enter sends a backslash followed by a carriage return
