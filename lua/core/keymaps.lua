@@ -19,5 +19,8 @@ vim.keymap.set("n", "<leader>bd", ":bdelete<CR>")
 
 vim.keymap.set("n", "<leader>bp", ":BufferPick<CR>")
 
+-- Build
+vim.keymap.set("n", "<leader>m", ":Make<CR>")
+
 -- Paste over selection without clobbering the yank register
 vim.keymap.set("x", "<C-p>", [["_dP]])

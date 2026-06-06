@@ -22,3 +22,5 @@ vim.opt.fillchars:append({ eob = " " })
 
 vim.cmd("syntax on")
 
+vim.opt.makeprg = "cmake --build build -j$(($(nproc) - 4))"
+

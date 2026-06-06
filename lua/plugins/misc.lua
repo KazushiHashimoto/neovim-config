@@ -1,5 +1,6 @@
 return {
   { "lewis6991/gitsigns.nvim", config = true },
+  { "tpope/vim-dispatch" },
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
