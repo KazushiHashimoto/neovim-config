@@ -223,5 +223,8 @@ alias build="cmake --build build -j"
 alias sim="./build/sim_mujoco"
 
 alias reload="source ~/.bashrc"
+alias lg="lazygit"
 
 eval "$(starship init bash)" 
+
+export EDITOR=nvim

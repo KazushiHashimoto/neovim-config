@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 -- JetBrainsMono renders Latin + Nerd Font icons; Noto Sans Mono CJK JP
 -- is the fallback for Japanese (and other CJK) glyphs.
 config.font = wezterm.font_with_fallback({
-    "JetBrainsMono Nerd Font",
+    "JetBrainsMonoNL Nerd Font",
     "Noto Sans Mono CJK JP",
 })
 config.font_size = 13.0
