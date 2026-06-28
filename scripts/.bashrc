@@ -64,9 +64,9 @@ parse_venv() {
 }
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[00;33m\]$(parse_venv)\[\033[00m\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
+    PS1='\[\033[00;33m\]$(parse_venv)\[\033[00m\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\n> '
 else
-    PS1='$(parse_venv)${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ '
+    PS1='$(parse_venv)${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\n> '
 fi
 unset color_prompt force_color_prompt
 
@@ -217,14 +217,16 @@ alias at2="tmux attach -t 2"
 
 alias c=clear 
 alias nv="nvim ."
+alias fm="nautilus . &>/dev/null &"
 
 alias main="sudo ./build/main"
 alias build="cmake --build build -j"
 alias sim="./build/sim_mujoco"
+alias issim="sudo IS_SIM=ON ./build/main"
 
 alias reload="source ~/.bashrc"
 alias lg="lazygit"
 
-eval "$(starship init bash)" 
+# eval "$(starship init bash)" 
 
 export EDITOR=nvim
